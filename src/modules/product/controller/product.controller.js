@@ -28,6 +28,35 @@ const productController = {
     })
   },
 
+  getProductById (req, res) {
+    const { id } = req.params
+
+    const query = 'SELECT * FROM `products` WHERE id = ? AND `product_status` = ?'
+    const values = [
+      id,
+      statusEnum.active
+    ]
+
+    db.execute(query, values, (err, results) => {
+      if (err) {
+        return res.status(500).json({
+          message: err?.message,
+          data: null
+        })
+      }
+      if (!results.length) {
+        return res.status(404).json({
+          message: 'not found',
+          data: null
+        })
+      }
+      return res.status(200).json({
+        message: 'done',
+        data: results[0]
+      })
+    })
+  },
+
   createProduct (req, res) {
     const { name, price, description } = req.body
 

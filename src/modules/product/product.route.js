@@ -7,6 +7,7 @@ const { checkToken } = require('../../middlewares/auth-token')
 
 // router.get('/', checkToken, productController.getProducts)
 router.get('/', productController.getProducts)
+router.get('/:id', productController.getProductById)
 router.post('/', productController.createProduct)
 router.put('/:id', productController.updateProduct)
 router.delete('/:id', productController.deleteProduct)
