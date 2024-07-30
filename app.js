@@ -5,6 +5,7 @@ dotenv.config()
 
 const productRoute = require('./src/modules/product/product.route')
 const authRoute = require('./src/modules/auth/auth.route')
+const uploadRoute = require('./src/modules/upload/upload.route')
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/products', productRoute)
 app.use('/auth', authRoute)
+app.use('/upload', uploadRoute)
 
 app.get('/', (req, res) => {
   res.send('Server is running ...')
