@@ -58,17 +58,16 @@ const productController = {
   },
 
   createProduct (req, res) {
-    const { name, price, description } = req.body
+    const { name, price, description, product_image } = req.body
 
-    const query = 'INSERT INTO `products` (`name`, `price`, `description`) VALUES (?, ?, ?)'
+    const query = 'INSERT INTO `products` (`name`, `price`, `description`, `product_image`) VALUES (?, ?, ?, ?)'
 
     const values = [
       name,
       Number(price),
-      description
+      description,
+      product_image
     ]
-
-    console.log('values', values)
 
     db.execute(query, values, (err, result) => {
       if (err) {
@@ -86,15 +85,16 @@ const productController = {
 
   updateProduct (req, res) {
     const { id } = req.params
-    const { name, price, description } = req.body
+    const { name, price, description, product_image } = req.body
 
-    const query = 'UPDATE `products` SET `name` = ?, `price` = ?, `description` = ? WHERE `id` = ?'
+    const query = 'UPDATE `products` SET `name` = ?, `price` = ?, `description` = ?, `product_image` = ? WHERE `id` = ?'
 
     const values = [
       name,
       Number(price),
       description,
-      id
+      product_image,
+      id,
     ]
 
     db.execute(query, values, (err, result) => {
